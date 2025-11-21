@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thread: Rekomendasi Buku Algoritma</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+      .reply-form-container {
+        margin-top: 10px;
+        padding-left: 15px;
+        border-left: 2px solid #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="web.html">Forum Mahasiswa</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="web.html">Ke Forum Utama</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <section class="container my-5">
+      <div class="row">
+        <div class="col-lg-10 offset-lg-1">
+          <h1 class="mb-4 text-primary">
+            Rekomendasi buku untuk belajar algoritma
+          </h1>
+          <p class="small text-muted mb-4">
+            Diposting oleh Dewi Anggraini | Kategori:
+            <span class="badge bg-primary">Struktur Data</span> | 5 jam yang
+            lalu
+          </p>
+
+          <div class="card p-4 shadow-sm mb-5">
+            <p class="lead">
+              Saya mencari buku yang bagus dan mudah dipahami untuk belajar
+              algoritma pemrograman. Ada saran dari senior? Yang mencakup
+              sorting dan searching.
+            </p>
+            <hr />
+            <div class="d-flex justify-content-between">
+              <span class="text-muted small" id="commentCount">8 Balasan</span>
+              <div>
+                <button class="btn btn-sm btn-outline-info">Laporkan</button>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="mb-3 border-bottom pb-2">
+            Balasan (<span id="commentNumber">8</span>)
+          </h3>
+
+          <div id="commentsContainer">
+            <div class="card p-3 mb-3 shadow-sm">
+              <div class="d-flex align-items-center mb-2">
+                <strong class="me-2 text-dark">Rizky Pratama</strong>
+                <small class="text-muted">3 jam yang lalu</small>
+              </div>
+              <p class="mb-2">
+                Coba cari buku 'Introduction to Algorithms' karya CLRS. Agak
+                tebal, tapi komplit banget
+              </p>
+              <button
+                class="btn btn-sm btn-link text-decoration-none p-0 reply-btn"
+              >
+                Balas
+              </button>
+            </div>
+            <div class="card p-3 mb-4 shadow-sm">
+              <div class="d-flex align-items-center mb-2">
+                <strong class="me-2 text-dark">Budi Santoso</strong>
+                <small class="text-muted">1 jam yang lalu</small>
+              </div>
+              <p class="mb-2">
+                Untuk pemula, buku dari Rinaldi Munir (Algoritma dan
+                Pemrograman) biasanya jadi pilihan bagus di kampus-kampus
+                Indonesia.
+              </p>
+              <button
+                class="btn btn-sm btn-link text-decoration-none p-0 reply-btn"
+              >
+                Balas
+              </button>
+            </div>
+          </div>
+
+          <h3 class="mt-5 mb-3 border-bottom pb-2 text-success">
+            Tambahkan Balasan Anda
+          </h3>
+          <div class="card p-4 shadow-lg">
+            <form id="commentForm">
+              <div class="mb-3">
+                <textarea
+                  class="form-control"
+                  id="commentContent"
+                  rows="4"
+                  placeholder="Tulis balasan Anda di sini..."
+                  required
+                ></textarea>
+              </div>
+              <button type="submit" class="btn btn-success fw-bold">
+                Kirim Balasan
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        let commentCount = parseInt($("#commentNumber").text());
+        const activeUser = "Anda (Pengguna Aktif)";
+
+        function createNewComment(text, parentUser = null) {
+          const replyToHtml = parentUser ? `membalas <b>${parentUser}</b>` : "";
+          return `
+                <div class="card p-3 mb-3 shadow-sm new-comment">
+                  <div class="d-flex align-items-center mb-2">
+                    <strong class="me-2 text-dark">${activeUser}</strong>
+                    <small class="text-muted">Baru saja ${replyToHtml}</small>
+                  </div>
+                  <p class="mb-2">${text}</p>
+                  <button class="btn btn-sm btn-link text-decoration-none p-0 reply-btn">
+                    Balas
+                  </button>
+                </div>
+            `;
+        }
+
+        // 1. FUNGSI KIRIM BALASAN (THREAD UTAMA)
+        $("#commentForm").on("submit", function (event) {
+          event.preventDefault();
+          const $commentContent = $("#commentContent");
+          const newCommentText = $commentContent.val().trim();
+          if (newCommentText === "") {
+            return;
+          }
+          const newCommentHtml = createNewComment(newCommentText);
+          $("#commentsContainer").prepend(newCommentHtml);
+          $(".new-comment").first().hide().fadeIn(400);
+          $commentContent.val("");
+          commentCount++;
+          $("#commentNumber").text(commentCount);
+          $("#commentCount").text(`${commentCount} Balasan`);
+        });
+
+        // 2. FUNGSI MENAMPILKAN FORM BALASAN (KOMENTAR)
+        $("#commentsContainer").on("click", ".reply-btn", function () {
+          const $currentComment = $(this).closest(".card");
+          $(".reply-form-container").remove();
+          const parentUser = $currentComment.find("strong").text();
+
+          const replyFormHtml = `
+            <div class="reply-form-container">
+              <form class="reply-submit-form">
+                <p class="small text-primary mt-2">Membalas ${parentUser}:</p>
+                <textarea class="form-control mb-2 reply-input" rows="2" required></textarea>
+                <button type="submit" class="btn btn-sm btn-success me-2">Kirim Balasan</button>
+                <button type="button" class="btn btn-sm btn-secondary cancel-reply-btn">Batal</button>
+              </form>
+            </div>
+          `;
+          $currentComment.after(replyFormHtml);
+        });
+
+        // 3. FUNGSI MEMBATALKAN BALASAN
+        $("#commentsContainer").on("click", ".cancel-reply-btn", function () {
+          $(this).closest(".reply-form-container").remove();
+        });
+
+        // 4. FUNGSI MENGIRIM BALASAN (KOMENTAR)
+        $("#commentsContainer").on(
+          "submit",
+          ".reply-submit-form",
+          function (event) {
+            event.preventDefault();
+            const $form = $(this);
+            const $replyInput = $form.find(".reply-input");
+            const replyText = $replyInput.val().trim();
+            if (replyText === "") {
+              return;
+            }
+
+            const $parentComment = $form
+              .closest(".reply-form-container")
+              .prev(".card");
+            const parentUser = $parentComment.find("strong").text();
+            const newReplyHtml = createNewComment(replyText, parentUser);
+
+            $parentComment.after(newReplyHtml);
+
+            $form.closest(".reply-form-container").remove();
+            $(".new-comment").first().hide().fadeIn(400);
+
+            commentCount++;
+            $("#commentNumber").text(commentCount);
+            $("#commentCount").text(`${commentCount} Balasan`);
+          }
+        );
+      });
+    </script>
+  </body>
+</html>

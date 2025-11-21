@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Forum Diskusi Mahasiswa</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+      body {
+        background-color: #f5f7f9;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .login-container {
+        max-width: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-container w-100 p-4 bg-white rounded shadow">
+      <h2 class="text-center text-primary mb-4">Login Forum</h2>
+      <form id="loginForm">
+        <div class="mb-3">
+          <label for="username" class="form-label fw-bold">Username</label>
+          <input type="text" id="username" class="form-control" required />
+        </div>
+        <div class="mb-4">
+          <label for="password" class="form-label fw-bold">Password</label>
+          <input type="password" id="password" class="form-control" required />
+        </div>
+        <button type="submit" class="btn btn-primary w-100 fw-bold">
+          Login
+        </button>
+      </form>
+      <div id="message" class="mt-3 text-center" style="display: none"></div>
+
+      <p class="mt-3 text-center small text-muted">
+        Coba Login dengan: (user/user) atau (admin/admin)
+      </p>
+    </div>
+
+    <script>
+      $(document).ready(function () {
+        $("#loginForm").on("submit", function (event) {
+          event.preventDefault();
+
+          // --- Kredensial yang Diperbarui ---
+          const USER_USERNAME = "user";
+          const USER_PASSWORD = "user";
+          const ADMIN_USERNAME = "admin";
+          const ADMIN_PASSWORD = "admin";
+          // ---------------------------------
+
+          const usernameInput = $("#username").val();
+          const passwordInput = $("#password").val();
+          const $messageDiv = $("#message");
+
+          $messageDiv.show();
+
+          // Reset kelas alert
+          $messageDiv.removeClass("alert alert-success alert-danger");
+
+          // Logika Otentikasi
+          if (
+            usernameInput === ADMIN_USERNAME &&
+            passwordInput === ADMIN_PASSWORD
+          ) {
+            // Login berhasil sebagai ADMIN
+            $messageDiv
+              .addClass("alert alert-success")
+              .text("Login Admin Berhasil! Mengarahkan ke halaman Admin...");
+
+            setTimeout(() => {
+              window.location.href = "admin/admin.html"; // Mengarahkan ke Admin
+            }, 1500);
+          } else if (
+            usernameInput === USER_USERNAME &&
+            passwordInput === USER_PASSWORD
+          ) {
+            // Login berhasil sebagai USER
+            $messageDiv
+              .addClass("alert alert-success")
+              .text("Login Pengguna Berhasil! Mengarahkan ke Forum...");
+
+            setTimeout(() => {
+              window.location.href = "dahsboard/web.html"; // Mengarahkan ke Pengguna
+            }, 1500);
+          } else {
+            // Login gagal (kredensial salah)
+            $messageDiv
+              .addClass("alert alert-danger")
+              .text("Username atau Password salah.");
+          }
+        });
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

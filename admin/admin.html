@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Admin - Forum Mahasiswa</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+      body {
+        background-color: #f5f7f9;
+      }
+      .footer {
+        background-color: #2c3e50;
+        color: white;
+      }
+      .admin-dashboard {
+        padding: 50px 0;
+      }
+      .stat-card {
+        border-left: 5px solid #0d6efd; /* Warna primary Bootstrap */
+      }
+      /* Menjaga tinggi card seimbang untuk tata letak bersebelahan */
+      .card-full-height {
+        min-height: 400px; /* Nilai contoh, bisa disesuaikan */
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="#">Admin Dashboard</a>
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNavAdmin"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a
+                class="btn btn-outline-danger ms-3"
+                href="../login.html"
+                id="logout-btn"
+                >Logout</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <section class="admin-dashboard">
+      <div class="container">
+        <h1 class="text-center text-primary mb-3">Dashboard Admin Forum</h1>
+        <p class="text-center text-danger fw-bold mb-5">
+          Hanya halaman dengan responsibilitas sederhana. Tidak ada
+          fungsionalitas Database.
+        </p>
+
+        <div class="row g-4 mb-5">
+          <div class="col-md-6 col-lg-3">
+            <div class="card stat-card shadow-sm h-100 p-3">
+              <h4 class="text-muted small">Total Pengguna</h4>
+              <div class="h2 fw-bold text-dark">3</div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div
+              class="card stat-card shadow-sm h-100 p-3"
+              style="border-left-color: #198754"
+            >
+              <h4 class="text-muted small">Total Thread</h4>
+              <div class="h2 fw-bold text-dark">124</div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div
+              class="card stat-card shadow-sm h-100 p-3"
+              style="border-left-color: #ffc107"
+            >
+              <h4 class="text-muted small">Balasan Hari Ini</h4>
+              <div class="h2 fw-bold text-dark">35</div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div
+              class="card stat-card shadow-sm h-100 p-3"
+              style="border-left-color: #dc3545"
+            >
+              <h4 class="text-muted small">Thread Dilaporkan</h4>
+              <div class="h2 fw-bold text-dark">3</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-4 mb-5">
+          <div class="col-lg-12">
+            <div class="card shadow p-4">
+              <h3 class="card-title text-success pb-2 border-bottom mb-4">
+                Manajemen Thread Aktif
+              </h3>
+
+              <div class="table-responsive">
+                <table class="table table-hover" id="threadTable">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Judul Thread</th>
+                      <th>Kategori</th>
+                      <th>Balasan</th>
+                      <th>Status</th>
+                      <th>Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>T101</td>
+                      <td>Cara memahami looping untuk pemula</td>
+                      <td>Pemrograman Dasar</td>
+                      <td>15</td>
+                      <td><span class="badge bg-success">Aktif</span></td>
+                      <td>
+                        <button
+                          class="btn btn-sm btn-outline-danger me-1 delete-thread-btn"
+                        >
+                          Hapus
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>T102</td>
+                      <td>Rekomendasi buku untuk belajar algoritma</td>
+                      <td>Struktur Data</td>
+                      <td>8</td>
+                      <td><span class="badge bg-success">Aktif</span></td>
+                      <td>
+                        <button
+                          class="btn btn-sm btn-outline-danger me-1 delete-thread-btn"
+                        >
+                          Hapus
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>T103</td>
+                      <td>Thread dengan banyak laporan...</td>
+                      <td>Basis Data</td>
+                      <td>22</td>
+                      <td><span class="badge bg-danger">Dilaporkan</span></td>
+                      <td>
+                        <button
+                          class="btn btn-sm btn-outline-danger me-1 delete-thread-btn"
+                        >
+                          Hapus
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <a href="#" class="btn btn-link mt-3">Lihat Semua Thread</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <div class="card shadow p-4 mb-4 h-100 card-full-height">
+              <h3 class="card-title text-primary pb-2 border-bottom mb-4">
+                Manajemen Kategori
+              </h3>
+              <button class="btn btn-success mb-3 w-auto" id="addCategoryBtn">
+                + Tambah Kategori Baru
+              </button>
+
+              <ul class="list-group list-group-flush" id="categoryList">
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <div>
+                    <strong class="text-dark">Pemrograman Dasar</strong>
+                    <p class="text-muted small mb-0">ID: C01 | 45 Threads</p>
+                  </div>
+                  <div>
+                    <button class="btn btn-sm btn-danger delete-category-btn">
+                      Hapus
+                    </button>
+                  </div>
+                </li>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <div>
+                    <strong class="text-dark">Struktur Data</strong>
+                    <p class="text-muted small mb-0">ID: C02 | 32 Threads</p>
+                  </div>
+                  <div>
+                    <button class="btn btn-sm btn-danger delete-category-btn">
+                      Hapus
+                    </button>
+                  </div>
+                </li>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <div>
+                    <strong class="text-dark">Basis Data</strong>
+                    <p class="text-muted small mb-0">ID: C03 | 28 Threads</p>
+                  </div>
+                  <div>
+                    <button class="btn btn-sm btn-danger delete-category-btn">
+                      Hapus
+                    </button>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="card shadow p-4 mb-4 h-100 card-full-height">
+              <h3 class="card-title text-info pb-2 border-bottom mb-4">
+                Pengguna Terbaru
+              </h3>
+              <ul class="list-group list-group-flush">
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <div>
+                    <strong>Budi Santoso</strong>
+                    <p class="text-muted small mb-0">Bergabung: Kemarin</p>
+                  </div>
+                </li>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <div>
+                    <strong>Dewi Anggraini</strong>
+                    <p class="text-muted small mb-0">Bergabung: 5 jam lalu</p>
+                  </div>
+                </li>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <div>
+                    <strong>Rizky Pratama</strong>
+                    <p class="text-muted small mb-0">Bergabung: Tadi Malam</p>
+                  </div>
+                </li>
+              </ul>
+              <a href="#" class="btn btn-link mt-3">Lihat Semua Pengguna</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer py-4 mt-5">
+      <div class="container text-center">
+        <div class="small mb-3">Admin Dashboard</div>
+        <p class="small mb-0">
+          &copy; 2023 Forum Diskusi Mahasiswa. Semua hak dilindungi.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      let categoryCounter = 4; // Mulai dari C04
+
+      function generateCategoryId() {
+        // Fungsi untuk menghasilkan ID kategori unik (C04, C05, dst.)
+        const id = "C" + String(categoryCounter).padStart(2, "0");
+        categoryCounter++;
+        return id;
+      }
+
+      $(document).ready(function () {
+        // 1. FUNGSI LOGOUT
+        $("#logout-btn").on("click", function (event) {
+          event.preventDefault();
+          alert("Anda telah logout.");
+          window.location.href = "../login.html";
+        });
+
+        // 2. FUNGSI TAMBAH KATEGORI BARU
+        $("#addCategoryBtn").on("click", function () {
+          const newCategoryName = prompt("Masukkan Nama Kategori Baru:");
+
+          if (newCategoryName && newCategoryName.trim() !== "") {
+            const trimmedName = newCategoryName.trim();
+            const newId = generateCategoryId();
+
+            const newItem = `
+              <li
+                class="list-group-item d-flex justify-content-between align-items-center"
+              >
+                <div>
+                  <strong class="text-dark">${trimmedName}</strong>
+                  <p class="text-muted small mb-0">ID: ${newId} | 0 Threads</p>
+                </div>
+                <div>
+                  <button class="btn btn-sm btn-danger delete-category-btn">
+                    Hapus
+                  </button>
+                </div>
+              </li>
+            `;
+
+            $("#categoryList").append(newItem);
+            alert(`Kategori "${trimmedName}" berhasil ditambahkan!`);
+          } else if (newCategoryName !== null) {
+            alert("Nama kategori tidak boleh kosong.");
+          }
+        });
+
+        // 3. FUNGSI HAPUS THREAD
+        $("#threadTable").on("click", ".delete-thread-btn", function () {
+          const row = $(this).closest("tr");
+          const threadTitle = row.find("td:eq(1)").text();
+
+          if (confirm(`Yakin ingin menghapus thread "${threadTitle}"?`)) {
+            row.fadeOut(300, function () {
+              $(this).remove();
+              alert(`Thread "${threadTitle}" berhasil dihapus.`);
+            });
+          }
+        });
+
+        // 4. FUNGSI HAPUS KATEGORI
+        $("#categoryList").on("click", ".delete-category-btn", function () {
+          const listItem = $(this).closest("li");
+          const categoryName = listItem.find("strong").text();
+
+          if (
+            confirm(
+              `Yakin ingin menghapus kategori "${categoryName}"? Semua thread akan ikut terhapus.`
+            )
+          ) {
+            listItem.fadeOut(300, function () {
+              $(this).remove();
+              alert(`Kategori "${categoryName}" berhasil dihapus.`);
+            });
+          }
+        });
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

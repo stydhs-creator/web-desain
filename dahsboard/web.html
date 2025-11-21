@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forum Diskusi Mahasiswa</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+      .hero-section {
+        background-color: #3498db;
+        color: white;
+        padding: 80px 0;
+      }
+      .forum-section {
+        padding: 50px 0;
+        background-color: #f5f7f9;
+      }
+      .section-title {
+        color: #2c3e50;
+        margin-bottom: 30px;
+        font-weight: 700;
+        text-align: center;
+      }
+      .footer {
+        background-color: #2c3e50;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="#">Forum Mahasiswa</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <form class="d-flex me-3" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Cari Topik..."
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-success" type="submit">Cari</button>
+          </form>
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a
+                class="btn btn-outline-danger ms-lg-3"
+                id="logout-btn"
+                href="../login.html"
+                >Logout</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <section class="hero-section">
+      <div class="container text-center">
+        <h1 class="display-4 fw-bold">Forum Diskusi Mahasiswa</h1>
+        <p class="lead mb-4">
+          Forum diskusi mahasiswa untuk berdiskusi, bertanya, dan berbagi
+          pengetahuan
+        </p>
+      </div>
+    </section>
+
+    <section class="forum-section">
+      <div class="container">
+        <h2 class="section-title">Kategori Diskusi</h2>
+        <div class="row g-4 mb-5">
+          <div class="col-md-6 col-lg-3">
+            <div class="card h-100 shadow-sm border-0">
+              <div class="card-body">
+                <h3 class="card-title text-primary fw-bold">
+                  Pemrograman Dasar
+                </h3>
+                <p class="card-text text-muted">
+                  Diskusi seputar dasar-dasar pemrograman untuk pemula
+                </p>
+                <span class="badge bg-warning text-dark">45 Thread</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="card h-100 shadow-sm border-0">
+              <div class="card-body">
+                <h3 class="card-title text-primary fw-bold">Struktur Data</h3>
+                <p class="card-text text-muted">
+                  Membahas tentang array, linked list, stack, queue dan lainnya
+                </p>
+                <span class="badge bg-warning text-dark">32 Thread</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="card h-100 shadow-sm border-0">
+              <div class="card-body">
+                <h3 class="card-title text-primary fw-bold">Basis Data</h3>
+                <p class="card-text text-muted">
+                  Diskusi tentang MySQL, SQLite, desain database dan query
+                </p>
+                <span class="badge bg-warning text-dark">28 Thread</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="card h-100 shadow-sm border-0">
+              <div class="card-body">
+                <h3 class="card-title text-primary fw-bold">
+                  Jaringan Komputer
+                </h3>
+                <p class="card-text text-muted">
+                  Membahas topik jaringan, protokol, dan keamanan
+                </p>
+                <span class="badge bg-warning text-dark">19 Thread</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="section-title">Diskusi</h2>
+        <div class="row mb-5">
+          <div class="col-12 mb-3">
+            <div class="card shadow-sm border-0">
+              <div class="card-body">
+                <div
+                  class="d-flex justify-content-between align-items-start mb-2"
+                >
+                  <a
+                    href="thread.html"
+                    class="card-title h5 text-primary text-decoration-none fw-bold"
+                    >Cara memahami looping untuk pemula</a
+                  >
+                  <small class="text-muted">2 jam yang lalu</small>
+                </div>
+                <p class="card-text mb-3">
+                  Saya sedang belajar pemrograman dan masih bingung dengan
+                  konsep perulangan. Ada yang bisa jelaskan perbedaan antara
+                  for, while, dan do-while?
+                </p>
+                <div
+                  class="d-flex justify-content-between align-items-center border-top pt-2"
+                >
+                  <div
+                    class="d-flex align-items-center user-profile-trigger"
+                    data-bs-toggle="modal"
+                    data-bs-target="#userProfileModal"
+                    data-username="Budi Santoso"
+                    data-join="3 Bulan Lalu"
+                    data-threads="10"
+                    data-img-src="p2.jpg"
+                    style="cursor: pointer"
+                  >
+                    <img
+                      src="p2.jpg"
+                      class="rounded-circle me-2"
+                      alt="Foto profil pengguna"
+                      style="width: 30px; height: 30px; object-fit: cover"
+                    />
+                    <small class="fw-bold text-dark">Budi Santoso</small>
+                  </div>
+                  <div>
+                    <span class="badge bg-info me-2">15 Balasan</span>
+                    <span class="badge bg-secondary">125 Dilihat</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 mb-3">
+            <div class="card shadow-sm border-0">
+              <div class="card-body">
+                <div
+                  class="d-flex justify-content-between align-items-start mb-2"
+                >
+                  <a
+                    href="thread2.html"
+                    class="card-title h5 text-primary text-decoration-none fw-bold"
+                    >Rekomendasi buku untuk belajar algoritma</a
+                  >
+                  <small class="text-muted">5 jam yang lalu</small>
+                </div>
+                <p class="card-text mb-3">
+                  Saya mencari buku yang bagus untuk belajar algoritma
+                  pemrograman. Ada saran dari senior?
+                </p>
+                <div
+                  class="d-flex justify-content-between align-items-center border-top pt-2"
+                >
+                  <div
+                    class="d-flex align-items-center user-profile-trigger"
+                    data-bs-toggle="modal"
+                    data-bs-target="#userProfileModal"
+                    data-username="Dewi Anggraini"
+                    data-join="1 Tahun Lalu"
+                    data-threads="25"
+                    data-img-src="p3.jpg"
+                    style="cursor: pointer"
+                  >
+                    <img
+                      src="p3.jpg"
+                      class="rounded-circle me-2"
+                      alt="Foto profil pengguna"
+                      style="width: 30px; height: 30px; object-fit: cover"
+                    />
+                    <small class="fw-bold text-dark">Dewi Anggraini</small>
+                  </div>
+                  <div>
+                    <span class="badge bg-info me-2">8 Balasan</span>
+                    <span class="badge bg-secondary">98 Dilihat</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 mb-3">
+            <div class="card shadow-sm border-0">
+              <div class="card-body">
+                <div
+                  class="d-flex justify-content-between align-items-start mb-2"
+                >
+                  <a
+                    href="thread3.html"
+                    class="card-title h5 text-primary text-decoration-none fw-bold"
+                    >Error undefined variable dalam function</a
+                  >
+                  <small class="text-muted">Kemarin</small>
+                </div>
+                <p class="card-text mb-3">
+                  Saya mengalami error "undefined variable" ketika memanggil
+                  variabel di dalam function. Bagaimana cara memperbaikinya?
+                </p>
+                <div
+                  class="d-flex justify-content-between align-items-center border-top pt-2"
+                >
+                  <div
+                    class="d-flex align-items-center user-profile-trigger"
+                    data-bs-toggle="modal"
+                    data-bs-target="#userProfileModal"
+                    data-username="Rizky Pratama"
+                    data-join="6 Bulan Lalu"
+                    data-threads="5"
+                    data-img-src="p1.jpg"
+                    style="cursor: pointer"
+                  >
+                    <img
+                      src="p1.jpg"
+                      class="rounded-circle me-2"
+                      alt="Foto profil pengguna"
+                      style="width: 30px; height: 30px; object-fit: cover"
+                    />
+                    <small class="fw-bold text-dark">Rizky Pratama</small>
+                  </div>
+                  <div>
+                    <span class="badge bg-info me-2">12 Balasan</span>
+                    <span class="badge bg-secondary">156 Dilihat</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div
+      class="modal fade"
+      id="userProfileModal"
+      tabindex="-1"
+      aria-labelledby="userProfileModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title" id="userProfileModalLabel">
+              <i class="bi bi-person-circle me-2"></i> Detail Profil Pengguna
+            </h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body text-center">
+            <img
+              src=""
+              id="modal-profile-img"
+              class="rounded-circle mb-3 border border-4 border-light shadow"
+              alt="Foto Profil"
+              style="width: 100px; height: 100px; object-fit: cover"
+            />
+            <h4 id="modal-username" class="fw-bold text-dark"></h4>
+            <p class="text-muted small">
+              Mahasiswa Komputer | <span id="modal-join-date"></span>
+            </p>
+            <hr />
+            <div class="d-flex justify-content-around">
+              <div>
+                <div
+                  class="h5 fw-bold text-primary"
+                  id="modal-threads-count"
+                ></div>
+                <small class="text-muted">Total Threads</small>
+              </div>
+              <div>
+                <div class="h5 fw-bold text-success">48</div>
+                <small class="text-muted">Total Balasan</small>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer justify-content-center">
+            <button
+              type="button"
+              class="btn btn-secondary btn-sm"
+              data-bs-dismiss="modal"
+            >
+              Tutup
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer py-4">
+      <div class="container text-center">
+        <div class="text-white-50 small mb-3">ForumMahasiswa</div>
+        <div class="footer-links mb-3">
+          <a class="text-white mx-2 text-decoration-none" href="#"
+            >Kebijakan Privasi</a
+          >
+          <a class="text-white mx-2 text-decoration-none" href="#"
+            >Syarat dan Ketentuan</a
+          >
+          <a class="text-white mx-2 text-decoration-none" href="#">Kontak</a>
+        </div>
+        <p class="text-white-50 small mb-0">&copy; Forum Diskusi Mahasiswa.</p>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const userProfileModal = document.getElementById("userProfileModal");
+        if (userProfileModal) {
+          userProfileModal.addEventListener("show.bs.modal", function (event) {
+            const button = event.relatedTarget;
+
+            // Ekstrak data dari atribut data-*
+            const username = button.getAttribute("data-username");
+            const joinDate = button.getAttribute("data-join");
+            const threadsCount = button.getAttribute("data-threads");
+            const imgSrc = button.getAttribute("data-img-src");
+
+            // Perbarui konten modal
+            document.getElementById("modal-username").textContent = username;
+            document.getElementById("modal-join-date").textContent =
+              "Bergabung: " + joinDate;
+            document.getElementById("modal-threads-count").textContent =
+              threadsCount;
+            document.getElementById("modal-profile-img").src = imgSrc;
+          });
+        }
+      });
+
+      // Menggunakan jQuery untuk fungsi logout
+      $(document).ready(function () {
+        $("#logout-btn").on("click", function (event) {
+          event.preventDefault();
+          alert("Anda telah logout.");
+          // KOREKSI PATH: Dari web.html ke admin/login.html
+          window.location.href = "../login.html";
+        });
+      });
+    </script>
+  </body>
+</html>
